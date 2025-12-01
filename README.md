@@ -1,14 +1,20 @@
 # DC-Position-Control-System
+
 ## Aim:
+
 To control the position of motor having the following specifications using MATLAB.<br>
 (J)     moment of inertia of the rotor =    3.2284E-6 kg.m^2<br>
 (b)     motor viscous friction constant =    3.5077E-6 N.m.s<br>
 (Ktf)    motor torque constant   =           0.0274 N.m/Amp<br>
 (R)     electric resistance  =              4 Ohm<br>
 (L)     electric inductance  =              2.75E-6H<br>
+
 ## Apparatus Required:
+
 Computer with MATLAB software
+
 ## Theory: 
+
 The speed of a DC motor is directly proportional to armature voltage and inversely proportional to flux. In field controlled DC motor the armature voltage is kept constant and the speed is varied by varying the flux of the machine. Since flux is directly proportional to field current, the flux is varied by varying field current. 
 
 The speed control system is an electro-mechanical control system. The electrical system consists of armature and field circuit but for analysis purpose, only field circuit is considered because the armature is excited by a constant voltage. The mechanical system consists of the rotating part of the motor and the load connected to the shaft of the motor. The field controlled DC motor speed control system is shown in the below figure. For this field controlled DC motor we shall find transfer function.
@@ -56,7 +62,27 @@ The equation (1) can be written as <br>
 
 ## Program
 
+```
+Kt=0.024
+J=3.2284e-6
+B=3.5077e-6
+Rf=4
+Lf=2.75e-6
+s=tf('s')
+ol_sys=Kt/((J*s^2+B*s)*(Lf*s+Rf))
+subplot(2,1,1)
+step(ol_sys)
+title('open loop response')
+cl_sys=feedback(ol_sys,1)
+subplot(2,1,2)
+step(cl_sys)
+title('closed loop response')
+```
+
 ## Output
 
+<img width="692" height="626" alt="image" src="https://github.com/user-attachments/assets/2cccd701-5444-455d-bc5b-6b5ae3149227" />
+
 ## Result
+
 Thus, the position of dc motor is controlled using MATLAB. 
